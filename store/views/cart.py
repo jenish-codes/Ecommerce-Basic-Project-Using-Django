@@ -3,9 +3,11 @@ from django.contrib.auth.hashers import check_password
 from django.views import View
 
 from store.models import Customer
-
+from store.models.product import Product
 
 class Cart(View):
     def get(self, request):
-        return render(request, 'cart.html')
+        ids = list(request.session.get('cart').keys())
+        products = Product.get_products_by_id(ids)
+        return render(request, 'cart.html', {'products' : products})
 
