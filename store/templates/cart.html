@@ -39,9 +39,46 @@
             </tfoot>
         </table>
         <div class="m-3 p-3">
-            <a href="#" class="btn btn-primary border rounded col-lg-3 float-right" style="float: right;">Check Out</a>
+            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary border rounded col-lg-3 float-right" style="float: right;">Check Out</a>
         </div>
     </div>
 </div>
+
+
+<!-- Button trigger modal -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Place Order</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="m-2 p-3">
+              <form action="/check-out" method="post">
+                {% csrf_token %}
+                <div class="form-group p-3">
+                  <label for="">Address</label>
+                  <input type="text" name="address" id="address" class="form-control" required>
+                </div>
+
+                <div class="form-group p-3">
+                    <label for="">Phone</label>
+                    <input type="text" name="phone" id="phone" class="form-control" placeholder="" required>
+                  </div>
+                <div class="form-group" style="display: flex; justify-content: center; align-items: center;">
+                    <input type="submit" value="Place Order"  class="btn btn-primary col-lg-6">
+                </div>
+              </form>
+          </div>
+        </div>
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        </div> -->
+      </div>
+    </div>
+  </div>
 
 {% endblock %}

@@ -4,10 +4,11 @@ from django.views import View
 
 from store.models import Customer
 from store.models.product import Product
+from store.models.orders import Order
 
+class OrderView(View):
 
-class Cart(View):
     def get(self, request):
-        ids = list(request.session.get('cart').keys())
-        products = Product.get_products_by_id(ids)
-        return render(request, 'cart.html', {'products': products})
+        customer = request.session.get('customer')
+        orders = Order.get_orders_by_customer(customer)
+        return render(request, 'orders.html', {'orders': orders})
