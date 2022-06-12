@@ -32,9 +32,9 @@ class Index(View):
         return redirect('home')
 
     def get(self, request):
-        # cart = request.session.get('cart')
-        # if cart:
-        #     request.session['cart'] = {}
+        cart = request.session.get('cart')
+        if not cart:
+            request.session['cart'] = {}
         products = None
         categories = Category.get_all_categories()
         categoryID = request.GET.get('category')
